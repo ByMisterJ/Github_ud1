@@ -71,6 +71,16 @@ public class ColeccionLibros {
         }
         return titulos;
     }
+
+//    public String listarAutores() {
+//
+//    }
+
+    public String libroMasPaginas() {
+        ArrayList<Libro> librosOrdenadosPaginas =new ArrayList<>(libros);
+        librosOrdenadosPaginas.sort(Comparator.comparingInt(Libro::getPaginas).reversed());
+        return librosOrdenadosPaginas.get(0).getTitulo();
+    }
     // ¿Qué tipo de colección es la más adecuada para almacenar los libros?
 
     // Crea los métodos solicitados en el enunciado del ejercicio

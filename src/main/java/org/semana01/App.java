@@ -28,7 +28,7 @@ public class App {
         System.out.println("5) Suma de páginas de todos los libros: " + coleccion.sumaTotalPaginas());
         System.out.println("6) Libros que superan el promedio de páginas : " + coleccion.listarLibrosMasPaginasPromedio());
 //        System.out.println("7) Autores sin repetir : " + coleccion.listarAutores());
-//        System.out.println("8) Libro con mayor número de páginas: " + coleccion.libroMasPaginas());
+        System.out.println("8) Libro con mayor número de páginas: " + coleccion.libroMasPaginas());
 //        System.out.println("9) Títulos de los libros: " + coleccion.listarTitulos());
 //        System.out.println("10) Autores con más de un libro: " + coleccion.listarAutoresConMasDeUnLibro());
 
