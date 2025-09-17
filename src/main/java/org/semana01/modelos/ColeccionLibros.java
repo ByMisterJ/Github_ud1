@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class ColeccionLibros {
     ArrayList<Libro> libros =new ArrayList<>();
+
     public void anadirlibro(Libro libro){
         libros.add(libro);
     }
@@ -11,7 +12,17 @@ public class ColeccionLibros {
     public int cantidadLibrosMas500Paginas() {
         int cantidad=0;
         for (int i=0;i<libros.toArray().length;i++){
-            if (libros.>500){
+            if (libros.get(i).getPaginas()>500){
+                cantidad++;
+            }
+        }
+        return cantidad;
+    }
+
+    public int cantidadLibrosMenos300Paginas() {
+        int cantidad=0;
+        for (int i=0;i<libros.toArray().length;i++){
+            if (libros.get(i).getPaginas()<300){
                 cantidad++;
             }
         }
