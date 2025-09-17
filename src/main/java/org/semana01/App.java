@@ -23,8 +23,8 @@ public class App {
 
         System.out.println("1) Cantidad de libros con más de 500 páginas: " + coleccion.cantidadLibrosMas500Paginas());
         System.out.println("2) Cantidad de libros con menos de 300 páginas: " + coleccion.cantidadLibrosMenos300Paginas());
-//        System.out.println("3) Títulos de libros con más de 500 páginas: " + coleccion.listarLibrosMas500Paginas());
-//        System.out.println("4) Títulos de los 3 libros con más páginas: " + coleccion.listarTresLibrosMasPaginas());
+        System.out.println("3) Títulos de libros con más de 500 páginas: " + coleccion.listarLibrosMas500Paginas());
+        System.out.println("4) Títulos de los 3 libros con más páginas: " + coleccion.listarTresLibrosMasPaginas());
 //        System.out.println("5) Suma de páginas de todos los libros: " + coleccion.sumaTotalPaginas());
 //        System.out.println("6) Libros que superan el promedio de páginas : " + coleccion.listarLibrosMasPaginasPromedio());
 //        System.out.println("7) Autores sin repetir : " + coleccion.listarAutores());
