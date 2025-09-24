@@ -33,15 +33,11 @@ public class ColeccionLibros {
     }
 
     public String listarTresLibrosMasPaginas() {
-        String titulos = "";
-        ArrayList<Libro> librosOrdenadosPaginas =new ArrayList<>(libros);
-        librosOrdenadosPaginas.sort(Comparator.comparingInt(Libro::getPaginas).reversed());
-        for (int i = 0; i< librosOrdenadosPaginas.toArray().length; i++) {
-            if (i<3){
-                titulos = titulos + ", " + librosOrdenadosPaginas.get(i).getTitulo();
-            }
-        }
-        return titulos;
+        return libros.stream()
+                .sorted(Comparator.comparingInt(Libro::getPaginas).reversed())
+                .limit(3)
+                .map(Libro::getTitulo)
+                .collect(Collectors.joining(", "));
     }
 
     public int sumaTotalPaginas() {
@@ -88,17 +84,15 @@ public class ColeccionLibros {
         return titulos;
     }
 
+    // Tuve que utilizar ayuda de la IA para este metodo
     public String listarAutoresConMasDeUnLibro() {
-        String autores = "";
-        for (int i=0;i<libros.toArray().length;i++){
-            int contador = 0;
-            for (int j=0;j<libros.toArray().length;j++){
-                if (libros.get(i).getAutor().equals(libros.get(j).getAutor())){
-                    contador++;}}
-            if (contador>1 && !autores.contains(libros.get(i).getAutor())){
-                autores = autores + ", " + libros.get(i).getAutor();}}
-        return autores;
-    }
+            return libros.stream()
+                .collect(Collectors.groupingBy(Libro::getAutor))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue().size() > 1)
+                .map(entry -> entry.getKey())
+                .collect(Collectors.joining(", "));
+        }
 
 
     // ¿Qué tipo de colección es la más adecuada para almacenar los libros?
