@@ -1,4 +1,4 @@
-package main.java.org.semana01.modelos;
+package org.semana01.modelos;
 
 public class Libro {
     String isbn;

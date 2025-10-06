@@ -1,4 +1,4 @@
-package main.java.org.semana01.modelos;
+package org.semana01.modelos;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -41,50 +41,46 @@ public class ColeccionLibros {
     }
 
     public int sumaTotalPaginas() {
-        int totalPaginas = 0;
-        for (int i=0;i<libros.toArray().length;i++){
-            totalPaginas = totalPaginas + libros.get(i).getPaginas();
-        }
-        return totalPaginas;
+        return libros.stream()
+                .mapToInt(Libro::getPaginas)
+                .sum();
     }
 
     public String listarLibrosMasPaginasPromedio() {
-        String titulos = "";
-        int promedio = sumaTotalPaginas() / libros.toArray().length;
-        libros.sort(Comparator.comparingInt(Libro::getPaginas).reversed());
-        for (int i = 0; i< libros.toArray().length; i++) {
-            if (promedio>= libros.get(i).getPaginas()){
-                titulos = titulos + ", " + libros.get(i).getTitulo();
-            }
-        }
-        return titulos;
+        double promedio = libros.stream()
+                .mapToInt(Libro::getPaginas)
+                .average()
+                .orElse(0);
+
+        return libros.stream()
+                .filter(libro -> libro.getPaginas() >= promedio)
+                .sorted(Comparator.comparingInt(Libro::getPaginas).reversed())
+                .map(Libro::getTitulo)
+                .collect(Collectors.joining(", "));
     }
 
     public String listarAutores() {
-        String autores = "";
-        for (int i=0;i<libros.toArray().length;i++){
-            if (!autores.contains(libros.get(i).getAutor())){
-                autores = autores + ", " + libros.get(i).getAutor();
-            }
-        }
-        return autores;
+        return libros.stream()
+                .map(Libro::getAutor)
+                .distinct()
+                .collect(Collectors.joining(", "));
     }
 
     public String libroMasPaginas() {
-        ArrayList<Libro> librosOrdenadosPaginas =new ArrayList<>(libros);
-        librosOrdenadosPaginas.sort(Comparator.comparingInt(Libro::getPaginas).reversed());
-        return librosOrdenadosPaginas.get(0).getTitulo();
+        return libros.stream()
+                .max(Comparator.comparingInt(Libro::getPaginas))
+                .map(Libro::getTitulo)
+                .orElse("No hay libros");
     }
 
     public String listarTitulos() {
-        String titulos = "";
-        for (int i=0;i<libros.toArray().length;i++){
-            titulos = titulos + ", " + libros.get(i).getTitulo();
-        }
-        return titulos;
+        return libros.stream()
+                .map(Libro::getTitulo)
+                .collect(Collectors.joining(", "));
     }
 
-    // Tuve que utilizar ayuda de la IA para este metodo
+
+
     public String listarAutoresConMasDeUnLibro() {
             return libros.stream()
                 .collect(Collectors.groupingBy(Libro::getAutor))

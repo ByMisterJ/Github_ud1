@@ -1,7 +1,7 @@
-package main.java.org.semana01;
+package org.semana01;
 
-import main.java.org.semana01.modelos.ColeccionLibros;
-import main.java.org.semana01.modelos.Libro;
+import org.semana01.modelos.ColeccionLibros;
+import org.semana01.modelos.Libro;
 
 public class App {
     public static void main(String[] args) {
